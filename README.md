@@ -4,7 +4,7 @@
 
 # ▰ Kyoka delta
 
-A mirror, struck once. Cold, off-axis, fractured: void black, a violet aura, ice for data, pewter and frost for the rest. Nothing is centred that does not have to be. The first of two Kyoka themes; the other is [hattin-kyoka-alpha](https://github.com/houssemMekhelbi/hattin-kyoka-alpha).
+A mirror, struck once. Cold, off-axis, fractured: void black, a violet aura, ice for data, pewter and frost for the rest. Nothing is centred that does not have to be. The first of two Kyoka themes; the other is [kyoka-alpha](https://github.com/houssemMekhelbi/kyoka-alpha).
 
 ## ▱ Palette
 
@@ -51,8 +51,8 @@ sudo pacman -S --needed $(grep -v '^#' kyoka-delta/packages.txt)
 > Everything it replaces is backed up first.
 
 ```sh
-git clone https://github.com/houssemMekhelbi/hattin-kyoka-delta.git
-cd hattin-kyoka-delta
+git clone https://github.com/houssemMekhelbi/kyoka-delta.git
+cd kyoka-delta
 ./kyoka-delta/restore.sh --dry-run   # show what would change, touch nothing
 ./kyoka-delta/restore.sh             # apply
 ```
