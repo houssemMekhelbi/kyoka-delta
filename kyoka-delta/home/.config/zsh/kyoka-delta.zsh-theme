@@ -9,7 +9,7 @@
 
 setopt prompt_subst
 
-KYOKA_DEFAULT_USER=${KYOKA_DEFAULT_USER:-rahal}   # hide context on your own box
+KYOKA_DEFAULT_USER=${KYOKA_DEFAULT_USER:-$USER}   # hide context on your own box
 
 K_RAISED='#1B1729' K_INDIGO='#263B8F' K_VIOLET='#4A30A6'
 K_PEWTER='#9A92C4' K_ICE='#8FE3F2'    K_FROST='#ECEAF5'
