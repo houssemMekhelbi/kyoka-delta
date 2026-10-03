@@ -1,0 +1,44 @@
+# Kyoka terminal. Void at 84%, compositor blur behind it.
+
+font-family = JetBrainsMono Nerd Font
+font-size = 11
+adjust-cell-height = 40%
+window-padding-x = 16
+window-padding-y = 16
+window-decoration = none
+background-opacity = 0.84
+background-blur = true
+
+background = #08070D
+foreground = #A29DBA
+cursor-color = #8FE3F2
+cursor-text = #08070D
+cursor-style = block
+cursor-style-blink = false
+selection-background = #1B1729
+selection-foreground = #ECEAF5
+
+# Search and splits in the theme's colours (ghostty's stock yellow and orange otherwise).
+search-background = #8FE3F2
+search-foreground = #08070D
+search-selected-background = #8FE3F2
+search-selected-foreground = #08070D
+split-divider-color = #2C2842
+unfocused-split-fill = #08070D
+
+palette = 0=#08070D
+palette = 1=#B83A5E
+palette = 2=#4FB89A
+palette = 3=#C9B77A
+palette = 4=#6F8CF5
+palette = 5=#8B6CF0
+palette = 6=#5FBFD6
+palette = 7=#A29DBA
+palette = 8=#3A3555
+palette = 9=#F07F9A
+palette = 10=#7FDDBF
+palette = 11=#E8DA9E
+palette = 12=#9DB0FF
+palette = 13=#B49CFF
+palette = 14=#8FE3F2
+palette = 15=#ECEAF5

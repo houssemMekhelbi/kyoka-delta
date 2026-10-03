@@ -1,0 +1,8 @@
+# org.gnome.desktop.interface keys applied by restore.sh (captured 2026-09-30)
+gtk-theme='Adwaita'
+icon-theme='KyokaDelta'
+color-scheme='prefer-dark'
+font-name='Space Grotesk 10'
+monospace-font-name='JetBrainsMono Nerd Font 11'
+cursor-theme='default'
+cursor-size=24

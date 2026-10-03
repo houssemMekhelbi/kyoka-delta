@@ -1,0 +1,4 @@
+# Sayings shown on the Kyoka lock screen, one per line: romaji | japanese
+# Blank lines and lines starting with # are skipped. The lock screen moves to
+# the next saying each time it locks, and every 10 minutes while locked.
+yokoso watashi no soul society | ようこそ 私のソウル・ソサエティ

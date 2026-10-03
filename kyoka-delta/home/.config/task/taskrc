@@ -1,0 +1,19 @@
+# Taskwarrior. Shown in waybar as "yawm" (~/.local/bin/waybar-yawm):
+#   click        list popup   (~/.local/bin/kyoka-yawm -> kyoka-yawm-menu)
+#   right-click  quick add    (~/.local/bin/kyoka-yawm add)
+# Tasks tagged +note are notes: listed last, never counted in the bar.
+
+data.location=~/.local/share/task
+news.version=3.5.0
+editor=nvim
+weekstart=monday
+
+# Kyoka colours (256-colour cube approximations)
+color.due.today=rgb245
+color.due=rgb215
+color.overdue=rgb522
+color.tag.note=gray12
+color.active=rgb125
+color.header=rgb223
+color.label=rgb223
+color.footnote=gray12

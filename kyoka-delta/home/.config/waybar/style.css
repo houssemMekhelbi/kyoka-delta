@@ -1,0 +1,286 @@
+/* Kyoka bar. Each module box is a leaning pane: a glass body clipped to the
+ * content box, with 12px slanted caps (PNGs in kyoka-delta/) in the side padding,
+ * so all three panels read as parallelograms. Pewter hairline on top, violet
+ * line underneath (the aura). Hyprland blurs the layer (kyoka-bar-glass). */
+
+@define-color void       #08070D;
+@define-color panel      #100E19;
+@define-color raised     #1B1729;
+@define-color violet     #8B6CF0;
+@define-color indigo     #6F8CF5;
+@define-color pewter     #9A92C4;
+@define-color ice        #8FE3F2;
+@define-color frost      #ECEAF5;
+@define-color ash        #A29DBA;
+@define-color rose       #F07F9A;
+@define-color mint       #7FDDBF;
+
+* {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    min-height: 0;
+    font-family: "Space Grotesk", "Readex Pro", "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 12px;
+}
+
+window#waybar {
+    background: transparent;
+    color: @frost;
+}
+
+tooltip {
+    background: rgba(8, 7, 13, 0.92);
+    border: 1px solid alpha(@violet, 0.5);
+}
+
+tooltip label {
+    color: @frost;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+/* ---- panes --------------------------------------------------------- */
+
+.modules-left,
+.modules-right {
+    margin-bottom: 8px;
+    padding: 0 12px;
+    background-repeat: no-repeat;
+    background-image:
+        url("kyoka-delta/slant-start.png"),
+        url("kyoka-delta/slant-end.png"),
+        linear-gradient(to bottom,
+            alpha(@pewter, 0.35) 0px, alpha(@pewter, 0.35) 1px,
+            rgba(16, 14, 25, 0.72) 1px, rgba(16, 14, 25, 0.72) 33px,
+            alpha(@violet, 0.75) 33px, alpha(@violet, 0.75) 34px);
+    background-size: 12px 34px, 12px 34px, 100% 100%;
+    background-position: left top, right top, left top;
+    background-origin: border-box, border-box, content-box;
+    background-clip: border-box, border-box, content-box;
+}
+
+/* Centre: same pane, top 34px; a shard hangs 8px below, right of centre. */
+.modules-center {
+    padding: 0 12px 8px 12px;
+    background-repeat: no-repeat;
+    background-image:
+        url("kyoka-delta/slant-start.png"),
+        url("kyoka-delta/slant-end.png"),
+        url("kyoka-delta/shard.png"),
+        linear-gradient(to bottom,
+            alpha(@pewter, 0.35) 0px, alpha(@pewter, 0.35) 1px,
+            rgba(16, 14, 25, 0.72) 1px, rgba(16, 14, 25, 0.72) 33px,
+            alpha(@violet, 0.75) 33px, alpha(@violet, 0.75) 34px,
+            transparent 34px, transparent 42px);
+    background-size: 12px 34px, 12px 34px, 18px 8px, 100% 100%;
+    background-position: left top, right top, 68% bottom, left top;
+    background-origin: border-box, border-box, border-box, content-box;
+    background-clip: border-box, border-box, border-box, content-box;
+}
+
+window#waybar.empty #window {
+    border-left: none;
+}
+
+/* ---- workspaces: pane / shard grammar ------------------------------ */
+/* Slots are custom/ws-1..10 plus custom/ws-x (workspaces from another
+ * monitor). Glyphs and state classes come from hattin-workspaces:
+ * ▱ empty, ▰ occupied / urgent, ◢ active, ╱ foreign. */
+
+#custom-ws-1, #custom-ws-2, #custom-ws-3, #custom-ws-4, #custom-ws-5,
+#custom-ws-6, #custom-ws-7, #custom-ws-8, #custom-ws-9, #custom-ws-10,
+#custom-ws-x {
+    min-width: 24px;
+    padding: 0;
+    margin: 0;
+    color: @violet;
+    font-family: "Noto Sans Symbols 2", "DejaVu Sans Mono", "JetBrainsMono Nerd Font", monospace;
+    font-size: 18px;
+}
+
+#custom-ws-1.empty, #custom-ws-2.empty, #custom-ws-3.empty, #custom-ws-4.empty,
+#custom-ws-5.empty, #custom-ws-6.empty, #custom-ws-7.empty, #custom-ws-8.empty,
+#custom-ws-9.empty, #custom-ws-10.empty {
+    color: alpha(@pewter, 0.45);
+}
+
+/* Shown on a monitor that does not have focus: ice, but quieter. */
+#custom-ws-1.active, #custom-ws-2.active, #custom-ws-3.active, #custom-ws-4.active,
+#custom-ws-5.active, #custom-ws-6.active, #custom-ws-7.active, #custom-ws-8.active,
+#custom-ws-9.active, #custom-ws-10.active {
+    color: alpha(@ice, 0.6);
+}
+
+#custom-ws-1.focused, #custom-ws-2.focused, #custom-ws-3.focused, #custom-ws-4.focused,
+#custom-ws-5.focused, #custom-ws-6.focused, #custom-ws-7.focused, #custom-ws-8.focused,
+#custom-ws-9.focused, #custom-ws-10.focused {
+    color: @ice;
+}
+
+#custom-ws-1.urgent, #custom-ws-2.urgent, #custom-ws-3.urgent, #custom-ws-4.urgent,
+#custom-ws-5.urgent, #custom-ws-6.urgent, #custom-ws-7.urgent, #custom-ws-8.urgent,
+#custom-ws-9.urgent, #custom-ws-10.urgent {
+    color: @rose;
+}
+
+#custom-ws-x {
+    color: @indigo;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    padding: 0 4px;
+}
+
+#custom-ws-x.active {
+    color: @ice;
+}
+
+#custom-ws-1:hover, #custom-ws-2:hover, #custom-ws-3:hover, #custom-ws-4:hover,
+#custom-ws-5:hover, #custom-ws-6:hover, #custom-ws-7:hover, #custom-ws-8:hover,
+#custom-ws-9:hover, #custom-ws-10:hover, #custom-ws-x:hover {
+    background: alpha(@raised, 0.6);
+    color: @frost;
+}
+
+/* ---- next prayer (custom/mawaqit) --------------------------------- */
+/* Sits in the left pane after the workspace glyphs, split off by the same
+ * hairline the instrument cluster uses. Colours per word come as markup
+ * from waybar-mawaqit; classes: soon (<15m to adhan), iqama, error. */
+
+#custom-mawaqit {
+    padding: 0 6px 0 11px;
+    margin: 8px 0 7px 6px;
+    border-left: 1px solid alpha(@pewter, 0.22);
+    color: @frost;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 11px;
+}
+
+#custom-mawaqit:hover {
+    background: alpha(@raised, 0.6);
+}
+
+#custom-mawaqit.error,
+#custom-mawaqit.unset {
+    color: @ash;
+}
+
+/* ---- window title (left pane, after the prayer) ------------------- */
+
+#window {
+    padding: 0 6px 0 11px;
+    margin: 8px 0 7px 6px;
+    border-left: 1px solid alpha(@pewter, 0.22);
+    color: @ash;
+    letter-spacing: 0.4px;
+    font-size: 11px;
+}
+
+/* ---- instrument cluster ------------------------------------------- */
+
+#custom-proton,
+#custom-tailscale,
+#network,
+#wireplumber,
+#bluetooth,
+#cpu,
+#memory,
+#temperature,
+#custom-nvidia,
+#power-profiles-daemon,
+#battery,
+#tray,
+#custom-tray-leader,
+#custom-notifications,
+#custom-idle,
+#custom-yawm {
+    padding: 0 9px;
+    margin: 8px 0 7px 0;
+    border-right: 1px solid alpha(@pewter, 0.22);
+    color: @frost;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 11px;
+}
+
+#clock {
+    padding: 0 10px;
+    color: @ice;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+#power-profiles-daemon {
+    color: @ash;
+}
+
+#custom-proton.up,
+#custom-tailscale.up {
+    color: @mint;
+}
+
+#custom-proton.down,
+#custom-tailscale.down {
+    color: @rose;
+}
+
+#custom-yawm.due {
+    color: @ice;
+}
+
+#custom-yawm.overdue {
+    color: @rose;
+}
+
+#custom-yawm:hover {
+    background: alpha(@raised, 0.6);
+}
+
+#custom-nvidia.active {
+    color: @ice;
+}
+
+#custom-idle.off,
+#battery.warning,
+#temperature.critical {
+    color: @ice;
+}
+
+#battery.critical {
+    color: @rose;
+}
+
+/* ---- click-to-reveal groups (NET, SYS, ▱) ------------------------- */
+
+#network,
+#cpu,
+#custom-tray-leader {
+    color: @frost;
+}
+
+#network:hover,
+#cpu:hover,
+#custom-tray-leader:hover {
+    background: alpha(@raised, 0.6);
+}
+
+#custom-tray-leader {
+    color: @pewter;
+    font-family: "Noto Sans Symbols 2", "DejaVu Sans Mono", monospace;
+    font-size: 12px;
+}
+
+#tray {
+    margin: 6px 0 6px 0;
+}
+
+/* Revealed members sit on Raised so the group reads as one drawer. */
+.drawer-hidden {
+    background: alpha(@raised, 0.45);
+}
+
+#tray menu {
+    background: rgba(8, 7, 13, 0.92);
+    border: 1px solid alpha(@violet, 0.5);
+    color: @frost;
+}

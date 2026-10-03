@@ -1,0 +1,2 @@
+# Paths restore.sh removes (after backing them up) because Kyoka must not
+# have them: files other themes add that would otherwise stay in effect.

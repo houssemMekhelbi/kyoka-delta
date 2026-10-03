@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""Lock-screen line (Kyoka delta): a saying in romaji, a violet slash, and the
+same saying in Japanese. No username.
+
+Prints Pango markup for the hyprlock label in hypr/hyprlock.conf. Sayings come
+from ~/.config/hypr/kyoka-delta/sayings.txt, one per line as
+"romaji | japanese" (# for comments); each call advances to the next one.
+"""
+
+import os
+from html import escape
+from pathlib import Path
+
+SAYINGS = Path.home() / ".config/hypr/kyoka-delta/sayings.txt"
+STATE = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "kyoka-lock" / "saying-index"
+
+
+def next_saying():
+    try:
+        lines = [l.strip() for l in SAYINGS.read_text(encoding="utf-8").splitlines()]
+    except OSError:
+        return None
+    sayings = [l for l in lines if l and not l.startswith("#")]
+    if not sayings:
+        return None
+    try:
+        index = int(STATE.read_text()) + 1
+    except (OSError, ValueError):
+        index = 0
+    index %= len(sayings)
+    STATE.parent.mkdir(parents=True, exist_ok=True)
+    STATE.write_text(str(index))
+    romaji, _, japanese = sayings[index].partition("|")
+    return romaji.strip(), japanese.strip()
+
+
+def main():
+    saying = next_saying()
+    if not saying:
+        return
+    romaji, japanese = saying
+    line = (f"<span font_family='Bodoni Moda' style='italic' weight='500' size='x-large' "
+            f"letter_spacing='1500' foreground='#ECEAF5'>{escape(romaji)}</span>")
+    if japanese:
+        line += (f"      <span foreground='#8B6CF0'>╱</span>      "
+                 f"<span font_family='Shippori Mincho' weight='500' foreground='#8FE3F2'>{escape(japanese)}</span>")
+    print(line)
+
+
+if __name__ == "__main__":
+    main()

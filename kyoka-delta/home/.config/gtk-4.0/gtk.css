@@ -1,0 +1,38 @@
+/* Kyoka for GTK4 / libadwaita: named colours only, so apps keep their own
+ * layout while picking up the Kyoka palette. */
+
+@define-color accent_color            #8FE3F2;
+@define-color accent_bg_color         #4A30A6;
+@define-color accent_fg_color         #ECEAF5;
+
+@define-color destructive_color       #F07F9A;
+@define-color destructive_bg_color    #B83A5E;
+@define-color destructive_fg_color    #ECEAF5;
+@define-color success_color           #7FDDBF;
+@define-color success_bg_color        #2F7F6A;
+@define-color warning_color           #E8DA9E;
+@define-color warning_bg_color        #C9B77A;
+@define-color warning_fg_color        #08070D;
+@define-color error_color             #F07F9A;
+@define-color error_bg_color          #B83A5E;
+
+@define-color window_bg_color         #08070D;
+@define-color window_fg_color         #ECEAF5;
+@define-color view_bg_color           #08070D;
+@define-color view_fg_color           #ECEAF5;
+@define-color headerbar_bg_color      #100E19;
+@define-color headerbar_fg_color      #ECEAF5;
+@define-color headerbar_border_color  #8B6CF0;
+@define-color headerbar_backdrop_color #08070D;
+@define-color sidebar_bg_color        #100E19;
+@define-color sidebar_fg_color        #A29DBA;
+@define-color sidebar_border_color    #2C2842;
+@define-color secondary_sidebar_bg_color #0C0A13;
+@define-color card_bg_color           #100E19;
+@define-color card_fg_color           #ECEAF5;
+@define-color dialog_bg_color         #100E19;
+@define-color dialog_fg_color         #ECEAF5;
+@define-color popover_bg_color        #100E19;
+@define-color popover_fg_color        #ECEAF5;
+@define-color thumbnail_bg_color      #1B1729;
+@define-color borders                 #2C2842;
